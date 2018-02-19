@@ -51,7 +51,12 @@ class AlphaVantage(_BaseReader):
         try:
             df = pd.DataFrame.from_dict(out[self.data_key], orient='index')
         except KeyError:
-            raise RemoteDataError()
+            if "Error Message" in out:
+                raise ValueError("The requested symbol {} could not be "
+                                 "retrived. Check valid ticker"
+                                 ".".format(self.symbols))
+            else:
+                raise RemoteDataError()
         df.sort_index(ascending=True, inplace=True)
         df.columns = [id[3:] for id in df.columns]
         return df

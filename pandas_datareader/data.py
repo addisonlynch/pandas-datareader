@@ -5,6 +5,7 @@ Module contains tools for collecting data from various remote sources
 import warnings
 
 from pandas_datareader.av.forex import AlphaVantageForexReader
+from pandas_datareader.av.time_series import AVTimeSeriesReader
 from pandas_datareader.bankofcanada import BankOfCanadaReader
 from pandas_datareader.edgar import EdgarIndexReader
 from pandas_datareader.enigma import EnigmaReader
@@ -313,6 +314,48 @@ def DataReader(name, data_source=None, start=None, end=None,
         return AlphaVantageForexReader(pairs=name, retry_count=retry_count,
                                        pause=pause, session=session,
                                        api_key=access_key).read()
+
+    elif data_source == "av-daily":
+        return AVTimeSeriesReader(symbols=name,
+                                  function="TIME_SERIES_DAILY", start=start,
+                                  end=end, retry_count=retry_count, 
+                                  pause=pause, session=session,
+                                  api_key=access_key).read()
+
+    elif data_source == "av-daily-adjusted":
+        return AVTimeSeriesReader(symbols=name,
+                                  function="TIME_SERIES_DAILY_ADJUSTED",
+                                  start=start, end=end,
+                                  retry_count=retry_count, pause=pause,
+                                  session=session, api_key=access_key).read()
+
+    elif data_source == "av-weekly":
+        return AVTimeSeriesReader(symbols=name,
+                                  function="TIME_SERIES_WEEKLY", start=start,
+                                  end=end, retry_count=retry_count, 
+                                  pause=pause, session=session,
+                                  api_key=access_key).read()
+
+    elif data_source == "av-weekly-adjusted":
+        return AVTimeSeriesReader(symbols=name,
+                                  function="TIME_SERIES_WEEKLY_ADJUSTED",
+                                  start=start, end=end,
+                                  retry_count=retry_count, pause=pause,
+                                  session=session, api_key=access_key).read()
+
+    elif data_source == "av-monthly":
+        return AVTimeSeriesReader(symbols=name,
+                                  function="TIME_SERIES_MONTHLY", start=start,
+                                  end=end, retry_count=retry_count, 
+                                  pause=pause, session=session,
+                                  api_key=access_key).read()
+
+    elif data_source == "av-monthly-adjusted":
+        return AVTimeSeriesReader(symbols=name,
+                                  function="TIME_SERIES_MONTHLY_ADJUSTED",
+                                  start=start, end=end,
+                                  retry_count=retry_count, pause=pause,
+                                  session=session, api_key=access_key).read()
 
     elif data_source == "google":
         return GoogleDailyReader(symbols=name, start=start, end=end,

@@ -153,7 +153,40 @@ AlphaVantage
 ============
 
 `AlphaVantage <https://www.alphavantage.co/documentation>`__ provides realtime
-currency exchange rates (for physical and digital currencies). Free registration is required to get an API key. 
+equities and forex data. Free registration is required to get an API key. 
+
+Historical Time Series Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Through the 
+`AlphaVantage <https://www.alphavantage.co/documentation>`__ Time Series
+endpoints, it is possible to obtain historical equities data for individual
+symbols. The following endpoints are available:
+
+* ``av-daily`` - Daily Time Series
+* ``av-daily-adjusted`` - Daily Time Series (Adjusted)
+* ``av-weekly`` - Weekly Time Series
+* ``av-weekly-adjusted`` - Weekly Time Series (Adjusted)
+* ``av-monthly`` - Monthly Time Series
+* ``av-monthly-adjusted`` - Monthly Time Series (Adjusted)
+
+.. ipython:: python
+
+    import os
+    from datetime import datetime
+    import pandas_datareader.data as web
+
+    f = web.DataReader("AAPL", "av-daily", start=datetime(2017, 2, 9),
+                       end=datetime(2017, 5, 24),
+                       access_key=os.getenv('ALPHAVANTAGE_API_KEY'))
+    f.loc["2017-02-09"]
+
+
+Forex
+^^^^^
+
+`AlphaVantage <https://www.alphavantage.co/documentation>`__ provides realtime
+currency exchange rates (for physical and digital currencies). 
 
 To request the exchange rate of physical or digital currencies, simply format
 as "FROM/TO" as in "USD/JPY".
