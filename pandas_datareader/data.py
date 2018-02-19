@@ -4,6 +4,7 @@ Module contains tools for collecting data from various remote sources
 
 import warnings
 
+from pandas_datareader.av.forex import AlphaVantageForexReader
 from pandas_datareader.bankofcanada import BankOfCanadaReader
 from pandas_datareader.edgar import EdgarIndexReader
 from pandas_datareader.enigma import EnigmaReader
@@ -307,6 +308,11 @@ def DataReader(name, data_source=None, start=None, end=None,
                               adjust_price=False, chunksize=25,
                               retry_count=retry_count, pause=pause,
                               session=session, interval='d').read()
+
+    elif data_source == "av-forex":
+        return AlphaVantageForexReader(pairs=name, retry_count=retry_count,
+                                       pause=pause, session=session,
+                                       api_key=access_key).read()
 
     elif data_source == "google":
         return GoogleDailyReader(symbols=name, start=start, end=end,

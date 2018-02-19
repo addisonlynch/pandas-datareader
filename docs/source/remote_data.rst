@@ -32,6 +32,7 @@ Currently the following sources are supported:
     - :ref:`Morningstar<remote_data.morningstar>`
     - :ref:`IEX<remote_data.iex>`
     - :ref:`Robinhood<remote_data.robinhood>`
+    - :ref:`AlphaVantage<remote_data.alphavantage>`
     - :ref:`Enigma<remote_data.enigma>`
     - :ref:`Quandl<remote_data.quandl>`
     - :ref:`St.Louis FED (FRED)<remote_data.fred>`
@@ -144,6 +145,36 @@ year relative to today.
     from datetime import datetime
     f = web.DataReader('F', 'robinhood')
     f.head()
+
+
+.. _remote_data.alphavantage
+
+AlphaVantage
+============
+
+`AlphaVantage <https://www.alphavantage.co/documentation>`__ provides realtime
+currency exchange rates (for physical and digital currencies). Free registration is required to get an API key. 
+
+To request the exchange rate of physical or digital currencies, simply format
+as "FROM/TO" as in "USD/JPY".
+
+.. ipython:: python
+
+    import os
+    import pandas_datareader.data as web
+
+    f = web.DataReader("USD/JPY", "av-forex", 
+                       access_key=os.getenv('ALPHAVANTAGE_API_KEY'))
+
+Multiple pairs are are allowable:
+
+.. ipython:: python
+
+    import os
+    import pandas_datareader.data as web
+
+    f = web.DataReader(["USD/JPY", "BTC/CNY"], "av-forex",
+                       access_key=os.getenv('ALPHAVANTAGE_API_KEY'))
 
 .. _remote_data.enigma:
 
