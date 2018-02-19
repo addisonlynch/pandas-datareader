@@ -15,9 +15,9 @@ class AVTimeSeriesReader(AlphaVantage):
     "TIME_SERIES_MONTHLY_ADJUSTED": "Monthly Adjusted Time Series"
     }
 
-    def __init__(self, symbols=None, function=None, start=None, end=None,
-                 retry_count=3, pause=0.35, session=None, chunksize=25,
-                 api_key=None):
+    def __init__(self, symbols=None, function="TIME_SERIES_DAILY", 
+                 start=None, end=None, retry_count=3, pause=0.35, 
+                 session=None, chunksize=25, api_key=None):
         super(AVTimeSeriesReader, self).__init__(symbols=symbols, start=start,
                                              end=end, retry_count=retry_count,
                                              pause=pause, session=session,

@@ -209,6 +209,21 @@ Multiple pairs are are allowable:
     f = web.DataReader(["USD/JPY", "BTC/CNY"], "av-forex",
                        access_key=os.getenv('ALPHAVANTAGE_API_KEY'))
 
+
+Sector Performance
+^^^^^^^^^^^^^^^^^^
+
+`AlphaVantage <https://www.alphavantage.co/documentation>`__ provides sector
+performances through the top-level function ``get_sector_performance_av``.
+
+.. ipython:: python
+
+    import os
+    import pandas_datareader.data as web
+
+    web.get_sector_performance_av().head()
+
+
 .. _remote_data.enigma:
 
 Enigma

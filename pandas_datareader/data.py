@@ -5,6 +5,7 @@ Module contains tools for collecting data from various remote sources
 import warnings
 
 from pandas_datareader.av.forex import AlphaVantageForexReader
+from pandas_datareader.av.sector import AVSectorPerformanceReader
 from pandas_datareader.av.time_series import AVTimeSeriesReader
 from pandas_datareader.bankofcanada import BankOfCanadaReader
 from pandas_datareader.edgar import EdgarIndexReader
@@ -49,9 +50,11 @@ __all__ = ['get_components_yahoo', 'get_data_enigma', 'get_data_famafrench',
            'DataReader']
 
 
+def get_data_av(*args, **kwargs):
+    return AVTimeSeriesReader(*args, **kwargs).read()
+
 def get_data_fred(*args, **kwargs):
     return FredReader(*args, **kwargs).read()
-
 
 def get_data_famafrench(*args, **kwargs):
     return FamaFrenchReader(*args, **kwargs).read()
@@ -108,7 +111,6 @@ def get_last_iex(*args, **kwargs):
 def get_data_morningstar(*args, **kwargs):
     return MorningstarDailyReader(*args, **kwargs).read()
 
-
 def get_data_robinhood(*args, **kwargs):
     return RobinhoodHistoricalReader(*args, **kwargs).read()
 
@@ -124,6 +126,11 @@ def get_data_tiingo(*args, **kwargs):
 def get_quotes_tiingo(*args, **kwargs):
     return TiingoQuoteReader(*args, **kwargs).read()
 
+def get_exchange_rate_av(*args, **kwargs):
+    return AlphaVantageForexReader(*args, **kwargs).read()
+
+def get_sector_performance_av(*args, **kwargs):
+    return AVSectorPerformanceReader(*args, **kwargs).read()
 
 def get_markets_iex(*args, **kwargs):
     """
@@ -349,6 +356,12 @@ def DataReader(name, data_source=None, start=None, end=None,
                                   end=end, retry_count=retry_count, 
                                   pause=pause, session=session,
                                   api_key=access_key).read()
+
+    elif data_source == "av-sector":
+        return AVSectorPerformanceReader(symbols=name, start=start, end=end,
+                                         retry_count=retry_count, pause=pause,
+                                         session=session,
+                                         api_key=access_key).read()
 
     elif data_source == "av-monthly-adjusted":
         return AVTimeSeriesReader(symbols=name,

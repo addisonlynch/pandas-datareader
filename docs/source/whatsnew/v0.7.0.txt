@@ -26,6 +26,11 @@ Enhancements
   introduced to obtain historical time series data.
   (:issue:`389`)
 
+  - A new data connector for data provided by
+  `AlphaVantage <https://www.alphavantage.co/documentation>`__ was
+  introduced to obtain sector performance data.
+  (:issue:`389`)
+
 .. _whatsnew_070.api_breaking:
 
 Backwards incompatible API changes
