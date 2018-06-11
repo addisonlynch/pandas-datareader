@@ -38,6 +38,13 @@ Enhancements
   top-level function ``get_quote_av``.
   (:issue:`389`)
 
+  - A new data connector for data provided by
+  `Barchart <https://www.barchart.com/ondemand/free-market-data-api>`__ was
+  introduced to obtain real-time Batch Stock Quotes through the
+  top-level function ``get_quotes_barchart``.
+  (:issue:`541`)
+
+
 .. _whatsnew_070.api_breaking:
 
 Backwards incompatible API changes

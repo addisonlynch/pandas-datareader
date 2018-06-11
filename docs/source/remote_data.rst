@@ -29,6 +29,7 @@ extract data from various Internet sources into a pandas DataFrame.
 Currently the following sources are supported:
 
     - :ref:`Google Finance<remote_data.google>`
+    - :ref:`Barchart<remote_data.barchart>`
     - :ref:`Tiingo<remote_data.tiingo>`
     - :ref:`Morningstar<remote_data.morningstar>`
     - :ref:`IEX<remote_data.iex>`
@@ -247,6 +248,26 @@ performances through the top-level function ``get_sector_performance_av``.
 
     web.get_sector_performance_av().head()
 
+
+.. _remote_data.barchart:
+
+Barchart
+========
+
+`Barchart <https://www.barchart.com/ondemand/free-market-data-api>`__ provides realtime
+equities and forex data. Free registration is required to get an API key. 
+
+Quotes
+------
+
+Barchart's getQuotes endpoint allows the retrieval of realtime stock quotes for up to 25 symbols at
+once. These quotes are accessible through the top-level function ``get_quotes_barchart``.
+
+.. ipython::python
+
+   import pandas_dataraeder.data as web
+
+   web.get_quotes_barchart("AAPL")
 
 .. _remote_data.enigma:
 

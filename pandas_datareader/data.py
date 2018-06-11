@@ -9,6 +9,7 @@ from pandas_datareader.av.quotes import AVQuotesReader
 from pandas_datareader.av.sector import AVSectorPerformanceReader
 from pandas_datareader.av.time_series import AVTimeSeriesReader
 from pandas_datareader.bankofcanada import BankOfCanadaReader
+from pandas_datareader.barchart.quotes import BarchartQuotesReader
 from pandas_datareader.edgar import EdgarIndexReader
 from pandas_datareader.enigma import EnigmaReader
 from pandas_datareader.eurostat import EurostatReader
@@ -48,11 +49,15 @@ __all__ = ['get_components_yahoo', 'get_data_enigma', 'get_data_famafrench',
            'get_iex_symbols', 'get_iex_book', 'get_dailysummary_iex',
            'get_data_morningstar', 'get_data_stooq',
            'get_data_stooq', 'get_data_robinhood', 'get_quotes_robinhood',
-           'DataReader']
+           'DataReader', 'get_quotes_barchart']
 
 
 def get_data_alphavantage(*args, **kwargs):
     return AVTimeSeriesReader(*args, **kwargs).read()
+
+
+def get_quotes_barchart(*args, **kwargs):
+    return BarchartQuotesReader(*args, **kwargs).read()
 
 
 def get_data_fred(*args, **kwargs):
